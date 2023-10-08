@@ -1,15 +1,18 @@
 <?php
 
-use Env\Dotenv;
+use Dotenv\Dotenv;
+
+$dotEnv = Dotenv::createImmutable(__DIR__);
+$dotEnv->load();
 
 return [
     'app' => [
-        'home_url' => 'http://localhost/todolist/'
+        'home_url' => $_ENV["APP_URL"]
     ],
     'Database' => [
-        'host' => 'localhost',
-        'dbName' => 'todolist',
-        'username' => 'root',
-        'password' => '',
+        'host' => $_ENV["DB_HOST"],
+        'dbName' => $_ENV ["DB_NAME"],
+        'username' => $_ENV["DB_USER"],
+        'password' => $_ENV['DB_PASSWORD']
     ]
 ];

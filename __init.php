@@ -2,10 +2,10 @@
 
 use App\Database\DatabaseConnection;
 use App\Database\QueryBuilder;
-use Env\Dotenv;
 use App\App;
 
 require 'vendor\autoload.php';
+
 
 
 App::set('config', require 'config.php');
