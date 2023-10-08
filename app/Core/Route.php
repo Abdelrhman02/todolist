@@ -44,13 +44,17 @@ class Route
 
     /**
      * @param string $uri
+     * @param string $method
      * @return void
      */
     public function resolve(string $uri, string $method): void
     {
-        if (array_key_exists($uri, $this->{$method})) {
-            $this->action(...$this->{$method}[$uri]);
+        if (!array_key_exists($uri, $this->{$method})) {
+            echo "Page Is Not Found";
+            return;
         }
+
+        $this->action(...$this->{$method}[$uri]);
     }
 
     public function action(string $controller, string $method): void

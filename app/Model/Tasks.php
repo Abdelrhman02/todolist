@@ -11,9 +11,9 @@ class Tasks
     /**
      * @return array
      */
-    public static function getAll(): array
+    public static function getAll(?bool $isCompleted = null): array
     {
-        return QueryBuilder::get(self::TABLE);
+        return QueryBuilder::get(self::TABLE, $isCompleted);
     }
 
     /**

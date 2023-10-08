@@ -11,10 +11,13 @@ class DatabaseConnection
     /**
      * @return PDO|void
      */
-    public static function connection()
+    public static function connection(array $config)
     {
         try {
-            self::$pdo = new \PDO('mysql:host=localhost;dbname=todolist;charset=utf8mb4', 'root', '');
+            self::$pdo = new \PDO(
+                "mysql:host={$config['host']};dbname={$config['dbName']};charset=utf8mb4",
+                $config['username'],
+                $config['password']);
 
             return self::$pdo;
         } catch (\PDOException $e) {

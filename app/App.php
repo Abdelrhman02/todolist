@@ -11,9 +11,8 @@ class App
         static::$entries[$key] = $value;
     }
 
-    public static function get($key, $default = null): static
+    public static function get($key, $default = null): array
     {
-
         return static::$entries[$key] ?? $default;
     }
 }

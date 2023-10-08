@@ -1,30 +1,27 @@
 <?php
-
-namespace App\App;
-
-require 'App.php';
+use App\App;
 function home(): string
 {
-    return trim(App::get("config")['app']["home_url"], '/'); // will retrun http://localhost/phptutorialPartTwo
+    return trim(App::get('config')['app']['home_url'], '/');
 }
 
 function redirect($to): void
 {
-    header("Location: {$to}");   // will take u to $location
+    header("Location : {$to}");
 }
 
-function redirect_home(): void
+function redirectHome(): void
 {
     redirect(home());
 }
 
 function back(): void
 {
-    redirect($_SERVER["HTTP_REFERER"] ?? home());
+    redirect($_SERVER['HTTP_REFERER'] ?? home());
 }
 
 function view(string $path, ?array $data = null): void
 {
-    ($data != NULL) ? extract($data) : null;
+    ($data != NULL) ? extract($data) : NULL;
     require "views/{$path}.view.php";
 }

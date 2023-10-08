@@ -1,6 +1,16 @@
 {
-    "require": {
-        "monolog/monolog": "^3.4",
-      "ext-pdo": "*"
-    }
+  "require": {
+    "monolog/monolog": "^3.4",
+    "ext-pdo": "*",
+    "env/dotenv": "*",
+    "twbs/bootstrap-icons": "^1.11"
+  },
+  "autoload": {
+    "classmap": [
+      "app/"
+    ],
+    "files": [
+      "app/helper.php"
+    ]
+  }
 }

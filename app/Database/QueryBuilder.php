@@ -10,9 +10,16 @@ class QueryBuilder
         self::$pdo = $pdo;
     }
 
-    public static function get(string $table): bool|array
+    public static function get(string $table, ?bool $completed = null): bool|array
     {
-        $query = self::$pdo->prepare("SELECT * FROM $table");
+        $statement = match ($completed) {
+            null => "SELECT * FROM $table",
+            true => "SELECT * FROM $table WHERE completed = 1",
+            false => "SELECT * FROM $table WHERE completed = 0"
+
+        };
+        
+        $query = self::$pdo->prepare($statement);
         $query->execute();
 
         return $query->fetchAll(\PDO::FETCH_OBJ);
@@ -36,7 +43,8 @@ class QueryBuilder
 
     public static function delete(string $table, int $id): void
     {
-        $query = self::$pdo->prepare('SELECT * FROM {$table} WHERE id = :id');
+        $query = self::$pdo->prepare("DELETE FROM {$table} WHERE id = :id;");
+        var_dump($query);
         $query->execute(['id' => $id]);
     }
 

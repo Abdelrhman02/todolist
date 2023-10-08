@@ -12,7 +12,9 @@ class Request
     public static function getUri(): string
     {
         $uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
-        $uri = str_replace('todolist', '', $uri);
+
+        $uri = $_SERVER['REQUEST_SCHEME'] . "://" . $_SERVER['HTTP_HOST'] . $uri;
+        $uri = str_replace(home(), '', $uri);
 
         return trim($uri, '/');
     }
